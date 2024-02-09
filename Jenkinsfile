@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone-Repo') {
 	    	steps {
-	        	checkout scm
+                sh 'mvn compile'
 	    	}
         }
 
@@ -23,9 +23,7 @@ pipeline {
 		
         stage('Unit Tests') {
             steps {
-                sh 'mvn compiler:testCompile'
-                sh 'mvn surefire:test'
-                junit 'target/**/*.xml'
+                sh 'mvn test'
             }
         }
 
